@@ -1,0 +1,7 @@
+.tabs .tab a.active {
+    color:#ffa000;
+} /*text color when a tab is active */
+
+.tabs .indicator {
+    background-color:#ffa000;
+} /*Color of underline*/
