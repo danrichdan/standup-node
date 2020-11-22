@@ -1,5 +1,12 @@
+const Standup = require("../models/standup");
+
 exports.getStandup = (req, res, next) => {
-  res.render("standup", {
-    pageTitle: "Standup",
-  });
+  Standup.find()
+    .then((standup) => {
+      res.render("standup", {
+        pageTitle: "Standup",
+        standup: standup,
+      });
+    })
+    .catch((err) => console.log(err));
 };
