@@ -3,6 +3,9 @@
   <body>
     <%- include('../includes/nav.ejs')%>
     <main>
+        <% if (errorMessage) { %>
+            <div class="user-message user-message--error"><%= errorMessage %></div>
+        <% } %>
         <section class="section">
             <div class="container">
                <div class="row">
@@ -24,6 +27,7 @@
                                 <input id="confirmPassword" type="text" class="validate" name="confirmPassword">
                                 <label for="confirmPassword">Confirm Password</label>
                             </div>
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                             <button type="submit" class="btn indigo darken-4">Sign Up</button>                        
                         </form>
                     </div>

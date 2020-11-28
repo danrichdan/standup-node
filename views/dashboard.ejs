@@ -5,88 +5,65 @@
     <main>
         <section class="section">
             <div class="container">
-                <h1>Standup</h1>
+                <h1>Dashboard</h1>
                 <div class="row">
-                    <!-- TAB LINKS -->
-                    <ul id="tabs-swipe-demo" class="tabs">
-                        <li class="tab col s3">
-                            <a href="#test-swipe-1" class="active amber-text text-darken-2">Have Done</a>
-                        </li>
-                        <li class="tab col s3">
-                            <a href="#test-swipe-2" class="amber-text text-darken-2">Working On</a>
-                        </li>
-                        <li class="tab col s3">
-                            <a href="#test-swipe-3" class="amber-text text-darken-2">Blockers</a>
-                        </li>
-                    </ul>
+                    <!--Card Begin-->
+                    <div class="col s12 m6">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">Have Done</span>
+                                <p>I am a very simple card. I am good at containing small bits of information.
+                                I am convenient because I require little markup to use effectively.</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="/havedone">View Have Done</a>
+                            </div>
+                        </div>
+                    </div>
 
-                    <!-- TABS -->
+                    <!--Card Begin-->
+                    <div class="col s12 m6">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">Working On</span>
+                                <p>I am a very simple card. I am good at containing small bits of information.
+                                I am convenient because I require little markup to use effectively.</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="/workingon">View Working On</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                    <!-- Have Done Tab -->
-                    <article id="test-swipe-1" class="col s12">
-                        <h3>Have Done</h3> 
-                        <form action="/have-done" method="POST">
-                            <input placeholder="Have Done" id="have_done" type="text" class="validate" name="have_done">                         
-                            <button type="submit" class="waves-effect waves-light btn amber darken-2">Add Have Done</button>                                                     
-                        </form>
-                        <section class="section">
-                            <% if (standup.length > 0)  { %>
-                                <ul class="collection">
-                                    <% standup.forEach(standup => { %>
-                                        <li class="collection-item">
-                                            <%= standup.haveDones %>
-                                        </li>
-                                    <% }) %>
-                                </ul>
-                            <% } else { %>
-                            <p>Haven't Done Much... yet</p>
-                            <% } %>
-                        </section>                      
-                    </article>
+                <!--Begin Row-->
+                <div class="row">
+                    <!--Card Begin-->
+                    <div class="col s12 m6">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">Blockers</span>
+                                <p>I am a very simple card. I am good at containing small bits of information.
+                                I am convenient because I require little markup to use effectively.</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="/blockers">View Blockers</a>
+                            </div>
+                        </div>
+                    </div>
 
-                    <!-- Working On Tab -->
-                    <article id="test-swipe-2" class="col s12">
-                        <h3>Working On</h3>
-                        <form action="/working-on" method="POST">
-                            <input placeholder="Working On" id="working_on" type="text" class="validate" name="working_on">                    
-                            <button type="submit" class="waves-effect waves-light btn amber darken-2">Add Working On</button>                                                     
-                        </form>
-                        <section class="section">
-                            <% if (standup.length > 0) { %>
-                                <ul class="collection">
-                                    <% standup.forEach(standup => { %>
-                                        <li class="collection-item">
-                                            <%= standup.workingOns %>
-                                        </li>
-                                    <% }) %>
-                                </ul>
-                            <% } else { %>
-                                <p>Not Working On Anything Now.</p>
-                            <% } %>
-                        </section>  
-                    </article>
-
-                    <!-- Blockers Tab-->
-                    <article id="test-swipe-3" class="col s12">
-                        <h3>Blockers</h3>
-                        <form action="/blockers" method="POST">        
-                            <input placeholder="Blockers" id="blockers" type="text" class="validate" name="blocker">
-                       
-                            <button type="submit" class="waves-effect waves-light btn amber darken-2">Add Blocker</button>                                                      
-                        </form>
-                        <section class="section">
-                            <% if (standup.length > 0) { %>
-                                <ul class="collection">
-                                    <% standup.forEach(standup => { %>
-                                        <li class="collection-item">
-                                            <%= standup.blockers %>
-                                        </li>
-                                    <% }) %>
-                                </ul>
-                            <% } else { %>
-                                <p>No Blockers</p>
-                            <% } %>
-                        </section>
+                    <!--Card Begin-->
+                    <div class="col s12 m6">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">Standup</span>
+                                <p>I am a very simple card. I am good at containing small bits of information.
+                                I am convenient because I require little markup to use effectively.</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="/standup">View Standup</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,64 @@
+<%- include('../includes/head.ejs')%>
+  </head>
+  <body>
+    <%- include('../includes/nav.ejs')%>
+    <main>
+        <!--Form Section-->
+        <section class="section">
+            <div class="container">
+               <div class="row">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">
+                            <% if (editing) { %>Edit<% } else { %>Add<% } %> Have Done 
+                         </span>
+                        <form action="/<% if (editing) { %>edit-havedone<% } else { %>havedone<% } %>" method="POST">                      
+                            <div class="input-field">
+                                <input id="havedone" type="text"name="havedone" class="validate" value="<% if (editing) { %><%=haveDone.title%><% } %>">
+                                <label for="havedone">Have Done</label>
+                            </div>
+                            <% if (editing) { %>
+                                <input type="hidden" value="<%= haveDone._id %>" name="haveDoneId">
+                            <% } %>
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <button type="submit" class="btn indigo darken-4"><% if (editing) { %>Update<% } else { %>Add<% } %> Have Done</button>                        
+                        </form>
+                    </div>
+                </div>
+               </div>
+            </div>
+        </section>
+
+        <!--List Section-->
+        <section class="section" id="havedone-list">
+            <div class="container">
+                <div class="row">
+                    <% if (haveDone.length > 0) { %>
+                    <ul class="collection">
+                        <% haveDone.forEach(item => { %>
+                            <li class="collection-item standup-item">
+                                <%= item.title %>
+                                <span class="action-icons">
+                                    <a href="/havedone/<%=item._id%>?edit=true">
+                                        <i class="material-icons">edit</i>
+                                    </a>
+                                    <form action="/delete-havedone" method="POST" class="delete-form">
+                                        <input type="hidden" name="haveDoneId" value="<%= item._id %>">
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                        <button type="submit" class="btn btn-flat white">
+                                            <i class="material-icons">delete</i>
+                                        </button>
+                                    </form>
+                                </span>
+                            </li>
+                        <% }) %>
+                    </ul>
+                    <% } else { %>
+                        <p><% if (editing) { %>Editing ID# <%=haveDone._id%><% } else { %>Haven't Done Anything<% } %></p>
+                        <p><% if (editing) { %>Value to change: <%=haveDone.title%><% } else { %>Please add what you've worked on.<% } %></p>
+                    <% } %>    
+                </div>
+            </div>
+        </section>
+    </main>
+<%- include('../includes/end.ejs')%>
