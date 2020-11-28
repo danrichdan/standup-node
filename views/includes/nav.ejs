@@ -1,34 +1,69 @@
 <header>
+    <!-- Dropdown Structure -->
+    <% if (isAuthenticated) { %> 
+      <ul id="dropdown1" class="dropdown-content">
+        <li class="<%= path === '/standup' ? 'active' : '' %>"><a href="/standup">Standup</a></li>
+        <li class="<%= path === '/havedone' ? 'active' : '' %>"><a href="/havedone">Have Done</a></li>
+        <li class="<%= path === '/workingon' ? 'active' : '' %>"><a href="/workingon">Working On</a></li>
+        <li class="<%= path === '/blockers' ? 'active' : '' %>"><a href="/blockers">Blockers</a></li>
+      </ul>
+    <% } %>
     <nav class="indigo darken-4">
       <div class="container">
         <div class="nav-wrapper">
-          <a href="/standup" class="brand-logo">Standup</a>
+          <a href="/" class="brand-logo">Standup</a>
           <a href="#" data-activates="mobile-demo" class="button-collapse"
             ><i class="material-icons">menu</i></a
           >
           <ul class="right hide-on-med-and-down">
-            <li><a href="/standup">Home</a></li>
-            <li><a href="/about">About</a></li>        
-            <li><a href="/login">Login</a></li>
-            <li><a href="/signup">Sign Up</a></li>           
-            <li>
-            <form action="/logout" method="POST">
-                <button type="submit" class="btn btn-flat white-text indigo darken-4">Logout</button>
-            </form>
-            </li>
+            <% if (isAuthenticated) { %>
+              <li class="<%= path === '/dashboard' ? 'active' : '' %>"><a href="/dashboard">Dashboard</a></li>
+              <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Standup<i class="material-icons right">arrow_drop_down</i></a></li>
+            <% } %>   
+            
+            <% if (!isAuthenticated) { %>
+              <li class="<%= path === '/' ? 'active' : '' %>"><a href="/">Home</a></li>
+            <% } %>  
+            <li class="<%= path === '/about' ? 'active' : '' %>"><a href="/about">About</a></li>
+
+            <% if (!isAuthenticated) { %>        
+              <li class="<%= path === '/login' ? 'active' : '' %>"><a href="/login">Login</a></li>
+              <li class="<%= path === '/signup' ? 'active' : '' %>"><a href="/signup">Sign Up</a></li>  
+            <% } %>
+
+            <% if (isAuthenticated) { %>         
+              <li>
+                <form action="/logout" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <button type="submit" class="btn btn-flat white-text indigo darken-4">Logout</button>
+                </form>
+              </li>
+            <% } %>
             
           </ul>
           <ul class="side-nav" id="mobile-demo">
-            <li><a href="/standup">Standup</a></li>
-            <li><a href="/about">About</a></li> 
-            <li><a href="/login">Login</a></li>
-            <li><a href="/signup">Sign Up</a></li>     
-            <li>
-            <form action="/logout" method="POST">
-                <button type="submit" class="btn btn-flat white-text indigo darken-4">Logout</button>
-            </form>
-            </li>
+            <% if (isAuthenticated) { %> 
+              <li><a href="/standup">Standup</a></li>
+              <li><a href="/havedone">Have Done</a></li>
+              <li><a href="/workingon">Working On</a></li>
+              <li><a href="/blockers">Blockers</a></li>
+            <% } %>
+            <% if (!isAuthenticated) { %>
+              <li><a href="/">Home</a></li>
+            <% } %>  
+            <li><a href="/about">About</a></li>
             
+            <% if (!isAuthenticated) { %> 
+              <li><a href="/login">Login</a></li>
+              <li><a href="/signup">Sign Up</a></li>  
+            <% } %>
+            <% if (isAuthenticated) { %> 
+              <li>
+                <form action="/logout" method="POST">
+                    <button type="submit" class="btn btn-flat white-text indigo darken-4">Logout</button>
+                </form>
+              </li>
+            <% } %>         
           </ul>
         </div>
       </div>

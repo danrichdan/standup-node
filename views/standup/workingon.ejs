@@ -1,0 +1,64 @@
+<%- include('../includes/head.ejs')%>
+  </head>
+  <body>
+    <%- include('../includes/nav.ejs')%>
+    <main>
+        <!--Form Section-->
+        <section class="section">
+            <div class="container">
+               <div class="row">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">
+                            <% if (editing) { %>Edit<% } else { %>Add<% } %> Working On 
+                         </span>
+                        <form action="/<% if (editing) { %>edit-workingon<% } else { %>workingon<% } %>" method="POST">                      
+                            <div class="input-field">
+                                <input id="workingon" type="text" class="validate" name="workingon" value="<% if (editing) { %><%=workingOn.title%><% } %>">
+                                <label for="workingon">Working On</label>
+                            </div>
+                            <% if (editing) { %>
+                                <input type="hidden" value="<%= workingOn._id %>" name="workingOnId">
+                            <% } %>
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <button type="submit" class="btn indigo darken-4"><% if (editing) { %>Update<% } else { %>Add<% } %> Working On</button>                        
+                        </form>
+                    </div>
+                </div>
+               </div>
+            </div>
+        </section>
+
+        <!--List Section-->
+        <section class="section" id="workingon-list">
+            <div class="container">
+                <div class="row">
+                    <% if (workingOn.length > 0) { %>
+                    <ul class="collection">
+                        <% workingOn.forEach(item => { %>
+                            <li class="collection-item standup-item">
+                                <%= item.title %>
+                                <span class="action-icons">
+                                    <a href="/workingon/<%=item._id%>?edit=true">
+                                        <i class="material-icons">edit</i>
+                                    </a>
+                                    <form action="/delete-workingon" method="POST" class="delete-form">
+                                        <input type="hidden" name="workingOnId" value="<%= item._id %>">
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                        <button type="submit" class="btn btn-flat white">
+                                            <i class="material-icons">delete</i>
+                                        </button>
+                                    </form>
+                                </span>
+                            </li>
+                        <% }) %>
+                    </ul>
+                    <% } else { %>
+                        <p><% if (editing) { %>Editing ID# <%=workingOn._id%><% } else { %>Not Working On Anything<% } %></p>
+                        <p><% if (editing) { %>Value to change: <%=workingOn.title%><% } else { %>Please add what you are and will be working on.<% } %></p>
+                    <% } %>    
+                </div>
+            </div>
+        </section>
+    </main>
+<%- include('../includes/end.ejs')%>

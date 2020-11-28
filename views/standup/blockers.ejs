@@ -1,0 +1,64 @@
+<%- include('../includes/head.ejs')%>
+  </head>
+  <body>
+    <%- include('../includes/nav.ejs')%>
+    <main>
+        <!--Form Section-->
+        <section class="section" id="blockers-form">
+            <div class="container">
+               <div class="row">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">
+                            <% if (editing) { %>Edit<% } else { %>Add<% } %> Blockers 
+                         </span>
+                        <form action="/<% if (editing) { %>edit-blockers<% } else { %>blockers<% } %>" method="POST">                      
+                            <div class="input-field">
+                                <input id="blockers" type="text" class="validate" name="blockers" value="<% if (editing) { %><%=blockers.title%><% } %>">
+                                <label for="blockers">Blockers</label>
+                            </div>
+                            <% if (editing) { %>
+                                <input type="hidden" value="<%= blockers._id %>" name="blockerId">
+                            <% } %>
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <button type="submit" class="btn indigo darken-4"><% if (editing) { %>Update<% } else { %>Add<% } %> Blocker</button>                        
+                        </form>
+                    </div>
+                </div>
+               </div>
+            </div>
+        </section>
+
+        <!--List Section-->
+        <section class="section" id="blockers-list">
+            <div class="container">
+                <div class="row">
+                    <% if (blockers.length > 0) { %>
+                    <ul class="collection">
+                        <% blockers.forEach(item => { %>
+                            <li class="collection-item standup-item">
+                                <%= item.title %>
+                                <span class="action-icons">
+                                    <a href="/blockers/<%=item._id%>?edit=true">
+                                        <i class="material-icons">edit</i>
+                                    </a>
+                                    <form action="/delete-blocker" method="POST" class="delete-form">
+                                        <input type="hidden" name="blockerId" value="<%= item._id %>">
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                        <button type="submit" class="btn btn-flat white">
+                                            <i class="material-icons">delete</i>
+                                        </button>
+                                    </form>
+                                </span>
+                            </li>
+                        <% }) %>
+                    </ul>
+                    <% } else { %>
+                        <p><% if (editing) { %>Editing ID# <%=blockers._id%><% } else { %>No Blockers<% } %></p>
+                        <p><% if (editing) { %>Value to change: <%=blockers.title%><% } else { %>Please add any blockers, if you have any.<% } %></p>
+                    <% } %>    
+                </div>
+            </div>
+        </section>
+    </main>
+<%- include('../includes/end.ejs')%>

@@ -1,7 +1,27 @@
 .tabs .tab a.active {
-    color:#ffa000;
+  color: #ffa000;
 } /*text color when a tab is active */
 
 .tabs .indicator {
-    background-color:#ffa000;
+  background-color: #ffa000;
 } /*Color of underline*/
+
+.delete-form {
+  display: inline;
+}
+
+.standup-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.action-icons {
+  display: flex;
+  align-items: center;
+}
+
+.action-icons a {
+  display: flex;
+  align-items: center;
+}
