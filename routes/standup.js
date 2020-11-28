@@ -18,6 +18,12 @@ router.post("/edit-havedone", isAuth, standupController.postEditHaveDone);
 
 router.post("/delete-havedone", isAuth, standupController.postDeleteHaveDone);
 
+router.post(
+  "/delete-all-havedone",
+  isAuth,
+  standupController.postDeleteAllHaveDone
+);
+
 // Working On Routes
 router.get("/workingon", isAuth, standupController.getWorkingOn);
 
@@ -33,6 +39,12 @@ router.post("/edit-workingon", isAuth, standupController.postEditWorkingOn);
 
 router.post("/delete-workingon", isAuth, standupController.postDeleteWorkingOn);
 
+router.post(
+  "/delete-all-workingon",
+  isAuth,
+  standupController.postDeleteAllWorkingOn
+);
+
 // Blockers Routes
 router.get("/blockers", isAuth, standupController.getBlockers);
 
@@ -43,5 +55,11 @@ router.post("/blockers", isAuth, standupController.postBlockers);
 router.post("/edit-blockers", isAuth, standupController.postEditBlockers);
 
 router.post("/delete-blocker", isAuth, standupController.postDeleteBlocker);
+
+router.post(
+  "/delete-all-blockers",
+  isAuth,
+  standupController.postDeleteAllBlocker
+);
 
 module.exports = router;

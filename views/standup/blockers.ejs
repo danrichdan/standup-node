@@ -34,7 +34,16 @@
             <div class="container">
                 <div class="row">
                     <% if (blockers.length > 0) { %>
-                    <ul class="collection">
+                    <ul class="collection with-header">
+                        <li class="collection-header standup-item blue lighten-5">
+                            <h5>Blockers</h5>
+                            <form action="/delete-all-blockers" method="POST">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <button type="submit" class="btn pink accent-3">
+                                    Delete All
+                                </button>  
+                            </form>                       
+                        </li>
                         <% blockers.forEach(item => { %>
                             <li class="collection-item standup-item">
                                 <%= item.title %>
