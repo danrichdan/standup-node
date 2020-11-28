@@ -13,7 +13,7 @@ exports.getStandup = (req, res, next) => {
 };
 
 exports.getHaveDone = (req, res, next) => {
-  HaveDone.find()
+  HaveDone.find({ userId: req.user._id })
     .then((haveDone) => {
       res.render("standup/havedone", {
         pageTitle: "Have Done",
@@ -26,7 +26,7 @@ exports.getHaveDone = (req, res, next) => {
 };
 
 exports.getWorkingOn = (req, res, next) => {
-  WorkingOn.find()
+  WorkingOn.find({ userId: req.user._id })
     .then((workingOn) => {
       res.render("standup/workingon", {
         pageTitle: "Working On",
@@ -39,7 +39,7 @@ exports.getWorkingOn = (req, res, next) => {
 };
 
 exports.getBlockers = (req, res, next) => {
-  Blockers.find()
+  Blockers.find({ userId: req.user._id })
     .then((blockers) => {
       res.render("standup/blockers", {
         pageTitle: "Blockers",
@@ -102,7 +102,7 @@ exports.postBlockers = (req, res, next) => {
 // DELETE ITEMS
 exports.postDeleteHaveDone = (req, res, next) => {
   const havDonId = req.body.haveDoneId;
-  HaveDone.findByIdAndRemove(havDonId)
+  HaveDone.deleteOne({ _id: havDonId, userId: req.user._id })
     .then((result) => {
       console.log("Have Done Deleted");
       res.redirect("/havedone");
@@ -112,7 +112,7 @@ exports.postDeleteHaveDone = (req, res, next) => {
 
 exports.postDeleteWorkingOn = (req, res, next) => {
   const wrkOnId = req.body.workingOnId;
-  WorkingOn.findByIdAndRemove(wrkOnId)
+  WorkingOn.deleteOne({ _id: wrkOnId, userId: req.user._id })
     .then((result) => {
       console.log("Working On Deleted");
       res.redirect("/workingon");
@@ -122,9 +122,37 @@ exports.postDeleteWorkingOn = (req, res, next) => {
 
 exports.postDeleteBlocker = (req, res, next) => {
   const blokId = req.body.blockerId;
-  Blockers.findByIdAndRemove(blokId)
+  Blockers.deleteOne({ _id: blokId, userId: req.user._id })
     .then((result) => {
       console.log("Blocker Deleted");
+      res.redirect("/blockers");
+    })
+    .catch((err) => console.log(err));
+};
+
+// DELETE ALL ITEMS
+exports.postDeleteAllHaveDone = (req, res, next) => {
+  HaveDone.deleteMany({ userId: req.user._id })
+    .then((result) => {
+      console.log("All Have Done Deleted");
+      res.redirect("/havedone");
+    })
+    .catch((err) => console.log(err));
+};
+
+exports.postDeleteAllWorkingOn = (req, res, next) => {
+  WorkingOn.deleteMany({ userId: req.user._id })
+    .then((result) => {
+      console.log("All Working On Deleted");
+      res.redirect("/workingon");
+    })
+    .catch((err) => console.log(err));
+};
+
+exports.postDeleteAllBlocker = (req, res, next) => {
+  Blockers.deleteMany({ userId: req.user._id })
+    .then((result) => {
+      console.log("All Blockers Deleted");
       res.redirect("/blockers");
     })
     .catch((err) => console.log(err));
@@ -191,6 +219,9 @@ exports.postEditHaveDone = (req, res, next) => {
 
   HaveDone.findById(hvDonId)
     .then((haveDone) => {
+      if (haveDone.userId.toString() !== req.user._id.toString()) {
+        return res.redirect("/");
+      }
       haveDone.title = updatedHaveDoneTitle;
       return haveDone.save();
     })
@@ -207,6 +238,9 @@ exports.postEditWorkingOn = (req, res, next) => {
 
   WorkingOn.findById(wrkOnId)
     .then((workingOn) => {
+      if (workingOn.userId.toString() !== req.user._id.toString()) {
+        return res.redirect("/");
+      }
       workingOn.title = updatedWorkingOnTitle;
       return workingOn.save();
     })
@@ -223,6 +257,9 @@ exports.postEditBlockers = (req, res, next) => {
   console.log("Here is the blocker ID", blkId);
   Blockers.findById(blkId)
     .then((blocker) => {
+      if (blocker.userId.toString() !== req.user._id.toString()) {
+        return res.redirect("/");
+      }
       console.log("Blocker is :", blocker);
       blocker.title = updatedBlockerTitle;
       return blocker.save();
