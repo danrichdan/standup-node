@@ -1,11 +1,82 @@
-.tabs .tab a.active {
-  color: #ffa000;
-} /*text color when a tab is active */
+/** HERO SECTION */
 
-.tabs .indicator {
-  background-color: #ffa000;
-} /*Color of underline*/
+#hero {
+  height: calc(100vh - 64px);
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(255, 255, 255, 0.86),
+      rgba(255, 255, 255, 0.86)
+    ),
+    url("../img/laptop.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
 
+#hero h1 {
+  margin-bottom: 0;
+}
+
+#hero h5 {
+  margin: 0 0 30px 0;
+}
+
+/** MISC */
+#about,
+#marketing,
+#cta {
+  padding: 100px 0;
+}
+
+#hero,
+#about .container,
+#cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#about p {
+  width: 75%;
+}
+
+.heading-margin {
+  margin-bottom: 30px;
+}
+
+/* .footer-copyright .right.legal-link {
+  margin-right: 20px;
+} */
+
+/** Input Fields***/
+.input-field .prefix.active {
+  color: #1a237e;
+  border-color: #1a237e;
+  box-shadow: 0 1px 0 0 #1a237e;
+}
+
+input#email.validate:focus {
+  color: #1a237e;
+  border-color: #1a237e;
+  box-shadow: 0 1px 0 0 #1a237e;
+}
+
+input#password.validate:focus {
+  color: #1a237e;
+  border-color: #1a237e;
+  box-shadow: 0 1px 0 0 #1a237e;
+}
+
+input#email.validate:focus + label {
+  color: #1a237e;
+}
+
+input#password.validate:focus + label {
+  color: #1a237e;
+}
+
+/** STANDUP LIST ITEMS */
 .delete-form {
   display: inline;
 }
@@ -16,6 +87,7 @@
   justify-content: space-between;
 }
 
+/** EDIT AND DELETE ICONS GROUP */
 .action-icons {
   display: flex;
   align-items: center;
@@ -24,4 +96,15 @@
 .action-icons a {
   display: flex;
   align-items: center;
+}
+
+/** MEDIA QUERIES */
+@media (max-width: 600px) {
+  #hero {
+    height: calc(100vh - 56px);
+  }
+
+  .point {
+    margin-bottom: 50px;
+  }
 }
