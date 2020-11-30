@@ -3,10 +3,75 @@
   <body>
     <%- include('includes/nav.ejs')%>
     <main>
-        <section class="section">
+        <!-- HERO SECTION -->
+        <section class="section black-text" id="hero">
+            <h1>scrumzy</h1>
+            <h5 class="">Daily Standup Tracker</h5> 
+            <a href="#about" class="btn yellow darken-2 waves-effect waves-light black-text">LEARN MORE</a>  
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section class="section" id="about">
             <div class="container">
-                <h1>Home</h1>
+                <h4>About</h4>
+                <p>Scrumzy is a tool that can be used to note what you have worked on, what you are working  on, and if you have any blockers. It's made specifically for the Scrum Event known as the Daily Standup. Standup's need to be quick and succint, but often times a participant might forget something, get off subject, discuss things in a disorderly way, or any number of things which can potentially diminish the effectiveness of teh Daily Standup. Having a Jira Board with your own swim lane can make this easier, but not always, and not everyone necessarily gets a swim lane.</p>
+                <p>Scrumzy makes this much easier. Try it out for free and see. You might find that your particiation in Standup is much more efficient.</p>
             </div>
         </section>
+
+        <!-- MARKETING POINTS SECTION -->
+        <section class="section indigo accent-1" id="marketing">
+            <div class="container">
+                <div class="row center-align">
+                    <!-- Begin Marketing Point -->
+                    <div class="point col s12 m4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="131.671" height="109.726" viewBox="0 0 131.671 109.726">
+                            <path id="Icon_material-important-devices" data-name="Icon material-important-devices" d="M126.185,52.432l-27.431-.055a5.5,5.5,0,0,0-5.486,5.486V107.24a5.5,5.5,0,0,0,5.486,5.486h27.431a5.5,5.5,0,0,0,5.486-5.486V57.863A5.456,5.456,0,0,0,126.185,52.432Zm0,49.322H98.753v-38.4h27.431ZM109.726,3H10.973A10.935,10.935,0,0,0,0,13.973V79.808A10.97,10.97,0,0,0,10.973,90.781h38.4v10.973H38.4v10.973h43.89V101.753H71.322V90.781H82.294V79.808H10.973V13.973h98.753V41.4H120.7V13.973A10.97,10.97,0,0,0,109.726,3ZM65.671,41.4,60.349,24.945,55.028,41.4H38.4L51.955,51.06,46.8,67.025,60.349,57.15,73.9,67.025,68.743,51.06,82.294,41.4Z" transform="translate(0 -3)"/>
+                        </svg>
+                        <ul>
+                            <li>Works on multiple devices.</li>
+                            <li>Whether you are on your phone,</li>
+                            <li>tablet, laptop, or Desktop, </li>
+                            <li>Scrumzy will be there for you.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Begin Marketing Point -->
+                    <div class="point col s12 m4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="118.329" height="112.412" viewBox="0 0 118.329 112.412">
+                            <path id="Icon_material-work" data-name="Icon material-work" d="M109.5,26.666H85.83V14.833A11.792,11.792,0,0,0,74,3H50.332A11.792,11.792,0,0,0,38.5,14.833V26.666H14.833A11.742,11.742,0,0,0,3.059,38.5L3,103.58a11.792,11.792,0,0,0,11.833,11.833H109.5a11.792,11.792,0,0,0,11.833-11.833V38.5A11.792,11.792,0,0,0,109.5,26.666Zm-35.5,0H50.332V14.833H74Z" transform="translate(-3 -3)"/>
+                        </svg>
+                        <ul>
+                            <li>Keep track of your work.</li>
+                            <li>Track what you've done.</li>
+                            <li>Track what you're working on.</li>
+                            <li>Track if you're blocked</li>
+                        </ul>     
+                    </div>
+
+                    <!-- Begin Marketing Point -->
+                    <div class="point col s12 m4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="98.1" height="109" viewBox="0 0 98.1 109">
+                            <path id="Icon_material-today" data-name="Icon material-today" d="M91.7,12.4H86.25V1.5H75.35V12.4H31.75V1.5H20.85V12.4H15.4A10.851,10.851,0,0,0,4.555,23.3L4.5,99.6a10.9,10.9,0,0,0,10.9,10.9H91.7a10.932,10.932,0,0,0,10.9-10.9V23.3A10.932,10.932,0,0,0,91.7,12.4Zm0,87.2H15.4V39.65H91.7ZM26.3,50.55H53.55V77.8H26.3Z" transform="translate(-4.5 -1.5)"/>
+                        </svg>
+                        <ul>
+                            <li>Be prepared every day.</li>
+                            <li>Improve standup efficiency.</li>
+                            <li>Help keep it short.</li>
+                            <li>Know what you're going to say.</li>
+                        </ul>   
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA SECTION -->
+        <section class="section" id="cta">
+            <h5 class="heading-margin">Get Started with Scrumzy for Free!</h5>
+            <a href="/signup" class="btn yellow darken-2 waves-effect waves-light black-text">SIGN UP</a>
+        </section>
     </main>
+
+    <!-- FOOTER -->
+<%- include('includes/footer.ejs')%>
 <%- include('includes/end.ejs')%>

@@ -28,6 +28,7 @@ app.set("views", "views");
 
 const standupRoute = require("./routes/standup");
 const authRoute = require("./routes/auth");
+const legalRoute = require("./routes/legal");
 const mainRoute = require("./routes/main");
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -63,6 +64,7 @@ app.use((req, res, next) => {
 
 app.use(standupRoute);
 app.use(authRoute);
+app.use(legalRoute);
 app.use(mainRoute);
 
 app.use(errorsController.get404);
