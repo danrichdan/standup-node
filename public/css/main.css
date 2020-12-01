@@ -37,7 +37,6 @@
   flex-direction: column;
 }
 
-
 .heading-margin {
   margin-bottom: 30px;
 }
@@ -67,6 +66,10 @@ input#havedone.validate:focus + label {
   color: #1a237e;
 }
 
+.dropdown-content li > a,
+.dropdown-content li > span {
+  color: #1a237e;
+}
 /** STANDUP LIST ITEMS */
 .delete-form {
   display: inline;
