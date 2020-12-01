@@ -37,17 +37,10 @@
   flex-direction: column;
 }
 
-#about p {
-  width: 75%;
-}
 
 .heading-margin {
   margin-bottom: 30px;
 }
-
-/* .footer-copyright .right.legal-link {
-  margin-right: 20px;
-} */
 
 /** Input Fields***/
 .input-field .prefix.active {
