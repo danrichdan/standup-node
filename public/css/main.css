@@ -37,6 +37,10 @@
   flex-direction: column;
 }
 
+#about {
+  height: 100vh;
+}
+
 .heading-margin {
   margin-bottom: 30px;
 }
