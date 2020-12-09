@@ -1,7 +1,0 @@
-{
-    "env": {
-        "MONGO_USER": "daniel_1",
-        "MONGO_PASSWORD": "sB4nQWUdCP2JIkqM",
-        "MONGO_DEFAULT_DATABASE": "standuptwo"
-    }
-}
