@@ -1,7 +1,8 @@
+const { validationResult } = require("express-validator");
+
 const HaveDone = require("../models/havedone");
 const WorkingOn = require("../models/workingon");
 const Blockers = require("../models/blockers");
-const e = require("express");
 
 // GET REQUESTS
 
@@ -17,9 +18,12 @@ exports.getHaveDone = (req, res, next) => {
     .then((haveDone) => {
       res.render("standup/havedone", {
         pageTitle: "Have Done",
+        path: "/havedone",
         haveDone: haveDone,
         editing: false,
-        path: "/havedone",
+        hasError: false,
+        errorMessage: null,
+        validationErrors: [],
       });
     })
     .catch((err) => console.log(err));
@@ -33,6 +37,9 @@ exports.getWorkingOn = (req, res, next) => {
         workingOn: workingOn,
         editing: false,
         path: "/workingon",
+        hasError: false,
+        errorMessage: null,
+        validationErrors: [],
       });
     })
     .catch((err) => console.log(err));
@@ -46,6 +53,9 @@ exports.getBlockers = (req, res, next) => {
         blockers: blockers,
         editing: false,
         path: "/blockers",
+        hasError: false,
+        errorMessage: null,
+        validationErrors: [],
       });
     })
     .catch((err) => console.log(err));
@@ -56,6 +66,24 @@ exports.getBlockers = (req, res, next) => {
 // ADD ITEMS
 exports.postHaveDone = (req, res, next) => {
   const haveDone = req.body.havedone;
+
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return HaveDone.find({ userId: req.user._id })
+      .then((haveDone) => {
+        res.status(422).render("standup/havedone", {
+          pageTitle: "Have Done",
+          path: "/havedone",
+          editing: false,
+          hasError: true,
+          haveDone: haveDone,
+          errorMessage: "Please enter an item.",
+          validationErrors: errors.array(),
+        });
+      })
+      .catch((err) => console.log(err));
+  }
   const haveDones = new HaveDone({
     title: haveDone,
     userId: req.user,
@@ -71,6 +99,25 @@ exports.postHaveDone = (req, res, next) => {
 
 exports.postWorkingOn = (req, res, next) => {
   const workingOn = req.body.workingon;
+
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return WorkingOn.find({ userId: req.user._id })
+      .then((workingOn) => {
+        res.status(422).render("standup/workingon", {
+          pageTitle: "Working On",
+          path: "/workingon",
+          editing: false,
+          hasError: true,
+          workingOn: workingOn,
+          errorMessage: "Please enter an item.",
+          validationErrors: errors.array(),
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+
   const workingOns = new WorkingOn({
     title: workingOn,
     userId: req.user,
@@ -86,6 +133,25 @@ exports.postWorkingOn = (req, res, next) => {
 
 exports.postBlockers = (req, res, next) => {
   const blocker = req.body.blockers;
+
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return Blockers.find({ userId: req.user._id })
+      .then((blockers) => {
+        res.status(422).render("standup/blockers", {
+          pageTitle: "Blockers",
+          path: "/blockers",
+          editing: false,
+          hasError: true,
+          blockers: blockers,
+          errorMessage: "Please enter an item.",
+          validationErrors: errors.array(),
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+
   const blockers = new Blockers({
     title: blocker,
     userId: req.user,
@@ -172,6 +238,9 @@ exports.getEditHaveDone = (req, res, next) => {
         haveDone: haveDone,
         editing: editMode,
         path: "/havedone",
+        hasError: false,
+        errorMessage: null,
+        validationErrors: [],
       });
     })
     .catch((err) => console.log(err));
@@ -190,6 +259,9 @@ exports.getEditWorkingOn = (req, res, next) => {
         workingOn: workingOn,
         editing: editMode,
         path: "/workingon",
+        hasError: false,
+        errorMessage: null,
+        validationErrors: [],
       });
     })
     .catch((err) => console.log(err));
@@ -208,6 +280,9 @@ exports.getEditBlocker = (req, res, next) => {
         blockers: blocker,
         editing: editMode,
         path: "/blockers",
+        hasError: false,
+        errorMessage: null,
+        validationErrors: [],
       });
     })
     .catch((err) => console.log(err));
@@ -216,6 +291,25 @@ exports.getEditBlocker = (req, res, next) => {
 exports.postEditHaveDone = (req, res, next) => {
   const hvDonId = req.body.haveDoneId;
   const updatedHaveDoneTitle = req.body.havedone;
+
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return HaveDone.findById(hvDonId)
+      .then((haveDone) => {
+        res.status(422).render("standup/havedone", {
+          pageTitle: "Have Done",
+          path: "/havedone",
+          editing: true,
+          hasError: true,
+          haveDone: haveDone,
+          errorMessage:
+            "Please enter your update. If you would rather delete, please use the delete button.",
+          validationErrors: errors.array(),
+        });
+      })
+      .catch((err) => console.log(err));
+  }
 
   HaveDone.findById(hvDonId)
     .then((haveDone) => {
@@ -236,6 +330,25 @@ exports.postEditWorkingOn = (req, res, next) => {
   const wrkOnId = req.body.workingOnId;
   const updatedWorkingOnTitle = req.body.workingon;
 
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return WorkingOn.findById(wrkOnId)
+      .then((workingOn) => {
+        res.status(422).render("standup/workingon", {
+          pageTitle: "Working On",
+          path: "/workingon",
+          editing: true,
+          hasError: true,
+          workingOn: workingOn,
+          errorMessage:
+            "Please enter your update. If you would rather delete, please use the delete button.",
+          validationErrors: errors.array(),
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+
   WorkingOn.findById(wrkOnId)
     .then((workingOn) => {
       if (workingOn.userId.toString() !== req.user._id.toString()) {
@@ -254,13 +367,31 @@ exports.postEditWorkingOn = (req, res, next) => {
 exports.postEditBlockers = (req, res, next) => {
   const blkId = req.body.blockerId;
   const updatedBlockerTitle = req.body.blockers;
-  console.log("Here is the blocker ID", blkId);
+
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return Blockers.findById(blkId)
+      .then((blocker) => {
+        res.status(422).render("standup/blockers", {
+          pageTitle: "Edit Blocker",
+          editing: true,
+          path: "/blockers",
+          hasError: true,
+          blockers: blocker,
+          errorMessage:
+            "Please enter your update. If you would rather delete, please use the delete button.",
+          validationErrors: errors.array(),
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+
   Blockers.findById(blkId)
     .then((blocker) => {
       if (blocker.userId.toString() !== req.user._id.toString()) {
         return res.redirect("/");
       }
-      console.log("Blocker is :", blocker);
       blocker.title = updatedBlockerTitle;
       return blocker.save();
     })
