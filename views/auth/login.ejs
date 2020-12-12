@@ -8,8 +8,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col s12 m5">
-                            <div class="card-panel pink accent-3">
-                                <span class="white-text"><%= errorMessage %></span>
+                            <div class="card-panel red lighten-4">
+                                <span class="red-text"><%= errorMessage %></span>
                             </div>
                         </div>
                     </div>
@@ -26,11 +26,21 @@
                          </span>
                         <form action="/login" method="POST">                      
                             <div class="input-field">
-                                <input id="email" type="text" class="validate" name="email">
+                                <input
+                                    class="validate <%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>"  
+                                    id="email" 
+                                    type="text"  
+                                    name="email" 
+                                    value="<%= oldInput.email %>">
                                 <label for="email">Email</label>
                             </div>
                             <div class="input-field">
-                                <input id="password" type="password" class="validate" name="password">
+                                <input 
+                                    class="validate <%= validationErrors.find(e => e.param === 'password') ? 'invalid' : '' %>" 
+                                    id="password" 
+                                    type="password" 
+                                    name="password" 
+                                    value="<%= oldInput.password %>">
                                 <label for="password">Password</label>
                             </div>
                             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
