@@ -1,3 +1,5 @@
+// const mongoose = require("mongoose");
+
 const { validationResult } = require("express-validator");
 
 const HaveDone = require("../models/havedone");
@@ -26,7 +28,11 @@ exports.getHaveDone = (req, res, next) => {
         validationErrors: [],
       });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
 };
 
 exports.getWorkingOn = (req, res, next) => {
@@ -58,7 +64,11 @@ exports.getBlockers = (req, res, next) => {
         validationErrors: [],
       });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
 };
 
 //POST REQUESTS
@@ -82,7 +92,11 @@ exports.postHaveDone = (req, res, next) => {
           validationErrors: errors.array(),
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+      });
   }
   const haveDones = new HaveDone({
     title: haveDone,
@@ -94,7 +108,11 @@ exports.postHaveDone = (req, res, next) => {
       console.log("Have Done Added");
       res.redirect("/havedone");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
 };
 
 exports.postWorkingOn = (req, res, next) => {
@@ -115,7 +133,11 @@ exports.postWorkingOn = (req, res, next) => {
           validationErrors: errors.array(),
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+      });
   }
 
   const workingOns = new WorkingOn({
@@ -128,7 +150,11 @@ exports.postWorkingOn = (req, res, next) => {
       console.log("Working On Added");
       res.redirect("/workingon");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
 };
 
 exports.postBlockers = (req, res, next) => {
@@ -149,7 +175,11 @@ exports.postBlockers = (req, res, next) => {
           validationErrors: errors.array(),
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+      });
   }
 
   const blockers = new Blockers({
@@ -162,7 +192,11 @@ exports.postBlockers = (req, res, next) => {
       console.log("Blocker added");
       res.redirect("/blockers");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
 };
 
 // DELETE ITEMS
@@ -173,7 +207,11 @@ exports.postDeleteHaveDone = (req, res, next) => {
       console.log("Have Done Deleted");
       res.redirect("/havedone");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
 };
 
 exports.postDeleteWorkingOn = (req, res, next) => {
@@ -183,7 +221,11 @@ exports.postDeleteWorkingOn = (req, res, next) => {
       console.log("Working On Deleted");
       res.redirect("/workingon");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
 };
 
 exports.postDeleteBlocker = (req, res, next) => {
@@ -193,7 +235,11 @@ exports.postDeleteBlocker = (req, res, next) => {
       console.log("Blocker Deleted");
       res.redirect("/blockers");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
 };
 
 // DELETE ALL ITEMS
@@ -203,7 +249,11 @@ exports.postDeleteAllHaveDone = (req, res, next) => {
       console.log("All Have Done Deleted");
       res.redirect("/havedone");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
 };
 
 exports.postDeleteAllWorkingOn = (req, res, next) => {
@@ -212,7 +262,11 @@ exports.postDeleteAllWorkingOn = (req, res, next) => {
       console.log("All Working On Deleted");
       res.redirect("/workingon");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
 };
 
 exports.postDeleteAllBlocker = (req, res, next) => {
@@ -221,7 +275,11 @@ exports.postDeleteAllBlocker = (req, res, next) => {
       console.log("All Blockers Deleted");
       res.redirect("/blockers");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
 };
 
 // EDIT ITEMS
@@ -243,7 +301,11 @@ exports.getEditHaveDone = (req, res, next) => {
         validationErrors: [],
       });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
 };
 
 exports.getEditWorkingOn = (req, res, next) => {
@@ -264,7 +326,11 @@ exports.getEditWorkingOn = (req, res, next) => {
         validationErrors: [],
       });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
 };
 
 exports.getEditBlocker = (req, res, next) => {
@@ -285,7 +351,11 @@ exports.getEditBlocker = (req, res, next) => {
         validationErrors: [],
       });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
 };
 
 exports.postEditHaveDone = (req, res, next) => {
@@ -308,7 +378,11 @@ exports.postEditHaveDone = (req, res, next) => {
           validationErrors: errors.array(),
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+      });
   }
 
   HaveDone.findById(hvDonId)
@@ -323,7 +397,11 @@ exports.postEditHaveDone = (req, res, next) => {
       console.log("Have Done Updated");
       res.redirect("/havedone");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
 };
 
 exports.postEditWorkingOn = (req, res, next) => {
@@ -346,7 +424,11 @@ exports.postEditWorkingOn = (req, res, next) => {
           validationErrors: errors.array(),
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+      });
   }
 
   WorkingOn.findById(wrkOnId)
@@ -361,7 +443,11 @@ exports.postEditWorkingOn = (req, res, next) => {
       console.log("Working On Updated");
       res.redirect("/workingon");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
 };
 
 exports.postEditBlockers = (req, res, next) => {
@@ -384,7 +470,11 @@ exports.postEditBlockers = (req, res, next) => {
           validationErrors: errors.array(),
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+      });
   }
 
   Blockers.findById(blkId)
@@ -399,5 +489,9 @@ exports.postEditBlockers = (req, res, next) => {
       console.log("Blockers Updated");
       res.redirect("/blockers");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
 };
