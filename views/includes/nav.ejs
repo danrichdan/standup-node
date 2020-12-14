@@ -50,6 +50,7 @@
             <% if (isAuthenticated) { %> 
               <li>
                 <form action="/logout" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                     <button type="submit" class="btn btn-flat white-text indigo darken-4">Logout</button>
                 </form>
               </li>
