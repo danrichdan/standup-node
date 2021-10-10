@@ -1,13 +1,13 @@
 exports.getIndex = (req, res, next) => {
   res.render("index", {
-    pageTitle: "Home Page",
+    pageTitle: "Scrumzy Home Page",
     path: "/",
   });
 };
 
 exports.getDashboard = (req, res, next) => {
   res.render("dashboard", {
-    pageTitle: "Dashboard",
+    pageTitle: "Scrumzy Dashboard",
     path: "/dashboard",
   });
 };
