@@ -28,6 +28,18 @@
   padding: 100px 0;
 }
 
+#about .container {
+  height: 100%;
+}
+
+.point ul {
+  margin-bottom: 0;
+}
+
+#marketing .row {
+  margin-bottom: 0;
+}
+
 #hero,
 #about .container,
 #cta {
@@ -108,7 +120,15 @@ input#havedone:focus + label {
     height: calc(100vh - 56px);
   }
 
-  .point {
-    margin-bottom: 50px;
+  .point:not(:last-of-type) {
+    margin-bottom: 75px;
+  }
+
+  .section#marketing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
   }
 }
